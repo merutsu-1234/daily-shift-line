@@ -2,14 +2,14 @@ name: Send Daily Shift
 
 on:
   schedule:
-    - cron: '0 22 * * *' # 毎朝7時 JST
-  workflow_dispatch: # ← 手動実行用
+    - cron: '0 22 * * *'  # 毎朝7:00 JST
+  workflow_dispatch:      # 手動実行用
 
 jobs:
   send-shift:
     runs-on: ubuntu-latest
     steps:
-      - name: Show start message
+      - name: Start workflow
         run: echo "Starting Send Daily Shift workflow"
 
       - name: Call Supabase Edge Function
@@ -17,5 +17,5 @@ jobs:
           echo "Calling Supabase Function..."
           curl -v -X POST https://rqilzkvvybxvclgrefhw.supabase.co/functions/v1/line-send-daily-shift
 
-      - name: Show end message
+      - name: Finish workflow
         run: echo "Workflow finished"
