@@ -1,0 +1,14 @@
+name: LINE Daily Shift
+
+on:
+  schedule:
+    - cron: '0 22 * * *'  # UTC 22:00 = JST 7:00
+  workflow_dispatch:     # 手動でも実行可能
+
+jobs:
+  send_shift:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send LINE shift
+        run: |
+          curl -X POST https://rqilzkvvybxvclgrefhw.supabase.co/functions/v1/line-send-daily-shift
